@@ -125,8 +125,6 @@ function checkForButton() {
     updateCleanlinessBtn.addEventListener('click', ()=> {
       updateExistingCleanliness()
     })
-  } else {
-    console.log('no')
   }
 }
 
