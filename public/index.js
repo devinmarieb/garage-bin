@@ -118,6 +118,7 @@ function updateExistingCleanliness() {
   .then(response => getSparklingCount())
   .then(response => getDustyCount())
   .then(response => getRancidCount())
+  .then(response => getSingleItems(selectedItem))
 }
 
 function checkForButton() {
