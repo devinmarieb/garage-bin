@@ -2,6 +2,8 @@ const garageList = document.querySelector('.garage-container')
 const newJunk = document.querySelector('.junk-input')
 const reason = document.querySelector('.reason-input')
 const submitBtn = document.querySelector('.submit-btn')
+const upBtn = document.querySelector('.up-btn')
+const downBtn = document.querySelector('.down-btn')
 
 getGarageItems()
 getItemCount()
@@ -92,4 +94,28 @@ submitBtn.addEventListener('click', ()=> {
   newJunk.value = ''
   reason.value = ''
   cleanlinessOption = cleanliness.options[cleanliness.selectedIndex = 0]
+})
+
+upBtn.addEventListener('click', ()=> {
+  fetch(`/api/junk/up`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Application': 'application/json'
+    },
+  })
+  .then(response => response.json())
+  .then(response => document.querySelector('.garage-container').innerHTML = response.reduce((acc, item) => `${acc} <p class="single-item">${item.name}</p>`,''))
+})
+
+downBtn.addEventListener('click', ()=> {
+  fetch(`/api/junk/down`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Application': 'application/json'
+    },
+  })
+  .then(response => response.json())
+  .then(response => document.querySelector('.garage-container').innerHTML = response.reduce((acc, item) => `${acc} <p class="single-item">${item.name}</p>`,''))
 })

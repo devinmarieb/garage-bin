@@ -92,6 +92,27 @@ app.get('/api/junk/rancid', (request, response)=> {
     })
 })
 
+//sort up
+app.get('/api/junk/up', (request, response)=> {
+  database('junk').select().orderBy('name', 'asc')
+    .then((junk)=> {
+      response.status(200).json(junk)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+})
+
+//sort down
+app.get('/api/junk/down', (request, response)=> {
+  database('junk').select().orderBy('name', 'desc')
+    .then((junk)=> {
+      response.status(200).json(junk)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+})
 
 app.listen(app.get('port'), () => {
   console.log(`Garage Bin is running on ${app.get('port')}.`)
