@@ -5,6 +5,7 @@ const reason = document.querySelector('.reason-input')
 const submitBtn = document.querySelector('.submit-btn')
 const upBtn = document.querySelector('.up-btn')
 const downBtn = document.querySelector('.down-btn')
+const garageDoor = document.querySelector('.garage-door')
 let selectedItem
 
 getGarageItems()
@@ -38,10 +39,10 @@ function getSingleItems(selectedItem) {
   .then(response => response.json())
   .then(response => document.querySelector('.individual-item-container').innerHTML = response.reduce((acc, item) =>
   `${acc} <div>
-            <p>${item.name}</p>
-            <p>${item.reason}</p>
-            <p>${item.cleanliness}</p>
-            <p>Did you clean it or make it worse?</p>
+            <p class='item-description'>item: ${item.name}</p>
+            <p class='item-description'>reason for keeping: ${item.reason}</p>
+            <p class='item-description'>how clean is it: ${item.cleanliness}</p>
+            <p class='question'>Did you clean it or make it worse?</p>
             <select class='update-clean-menu'>
               <option value='sparkling'>sparkling</option>
               <option value='dusty'>dusty</option>
@@ -127,6 +128,14 @@ function checkForButton() {
     })
   }
 }
+
+garageDoor.addEventListener('click', ()=> {
+  const wholeApp = document.querySelector('.whole-app')
+  const text = document.querySelector('.click-to-enter')
+  garageDoor.style.display = 'none'
+  text.style.display = 'none'
+  wholeApp.style.visibility = 'visible'
+})
 
 
 submitBtn.addEventListener('click', ()=> {

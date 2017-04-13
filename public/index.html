@@ -7,38 +7,44 @@
     <title>Garage Bin</title>
   </head>
   <body>
-    <h1 class="tite">Garage Bin</h1>
-    <input class="up-btn" type="submit" value="&#8679" />
-    <input class="down-btn" type="submit" value="&#8681" />
-
-    <div class="garage-container"></div>
-    <h1>The amount of junk you have: </h1>
-    <h1 class="count"></h1>
-
-    <h1>This much is sparkling: </h1>
-    <h1 class="sparkling"></h1>
-
-    <h1>This much is dusty: </h1>
-    <h1 class="dusty"></h1>
-
-    <h1>This much is rancid: </h1>
-    <h1 class="rancid"></h1>
-
-    <div class="individual-item-container"></div>
-
-    <div class="input-container">
-      <input class="junk-input" placeholder="what junk did you find?" />
-      <input class="reason-input" placeholder="why are you keeping it?" />
-
-      <p class="condition">What condition is it in?</p>
-      <select class="cleanliness-dropdown">
-        <option value="sparkling">sparkling</option>
-        <option value="dusty">dusty</option>
-        <option value="rancid">rancid</option>
-      </select>
-
-      <input class="submit-btn" type="submit" value="add to garage" />
+    <div class="enter-site">
+      <img class="garage-door" src="https://i.vimeocdn.com/video/469890823_1280x720.jpg">
+      <h1 class="click-to-enter">click Peter to enter the garage</h1>
     </div>
+    <div class="whole-app">
+      <h1 class="title">Garage Bin</h1>
+      <h2 class="sort">Sort</h2>
+      <input class="up-btn" type="submit" value="&#8679" />
+      <input class="down-btn" type="submit" value="&#8681" />
+
+      <div class="garage-container"></div>
+
+      <div class="counter-container">
+        <h1>The amount of junk you have: </h1>
+        <h1 class="count"></h1>
+        <h1>This much is sparkling: </h1>
+        <h1 class="sparkling"></h1>
+        <h1>This much is dusty: </h1>
+        <h1 class="dusty"></h1>
+        <h1>This much is rancid: </h1>
+        <h1 class="rancid"></h1>
+      </div>
+
+      <div class="individual-item-container"></div>
+
+      <div class="input-container">
+        <input class="junk-input" placeholder="what junk did you find?" />
+        <input class="reason-input" placeholder="why are you keeping it?" />
+        <p class="condition">What condition is it in?</p>
+        <select class="cleanliness-dropdown">
+          <option value="sparkling">sparkling</option>
+          <option value="dusty">dusty</option>
+          <option value="rancid">rancid</option>
+        </select>
+        <input class="submit-btn" type="submit" value="add to garage" />
+      </div>
+    </div>
+
     <script src="/index.js"></script>
   </body>
 </html>

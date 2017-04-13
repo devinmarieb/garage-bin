@@ -1,11 +1,35 @@
+.whole-app {
+  visibility: hidden;
+}
+
+.enter-site {
+  text-align: center;
+}
+
+.garage-door {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.click-to-enter {
+  font-size: 48px;
+}
+
+.title {
+  margin: 30px;
+  display: block;
+  font-size: 42px;
+}
+
 .input-container {
-  margin-top: 30px;
+  margin-top: 20px;
   border-top: 1px solid black;
 }
 
 input {
   display: block;
-  margin: 20px;
+  margin: 15px;
 }
 
 .condition {
@@ -15,4 +39,114 @@ input {
 
 input.update-cleanliness-btn {
   display: inline-block;
+}
+
+.sort {
+  margin: 20px;
+  display: inline-block;
+  font-size: 20px;
+}
+
+input.up-btn {
+  font-size: 18px;
+  padding: 10px;
+  display: inline-block;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 5px;}
+
+input.down-btn {
+  font-size: 18px;
+  padding: 10px;
+  display: inline-block;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+
+.garage-container {
+  padding: 20px;
+  background-color: #d7e2e8;
+}
+
+p.single-item {
+  margin: 10px;
+  font-size: 18px;
+}
+
+.counter-container {
+  padding: 20px;
+}
+
+h1 {
+  display: inline-block;
+  margin: 10px 0 5px 5px;
+  font-size: 18px;
+}
+
+h1.count, h1.sparkling, h1.dusty, h1.rancid {
+  display: inline-block;
+  margin: 10px 20px 5px 5px;
+  font-size: 18px;
+}
+
+input.junk-input {
+  outline: none;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 400px;
+}
+
+input.reason-input {
+  outline: none;
+  border-radius: 5px;
+  font-size: 18px;
+  width: 400px;
+}
+
+input.submit-btn {
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+
+p.condition {
+  font-size: 18px;
+}
+
+.cleanliness-dropdown {
+  font-size: 18px;
+}
+
+input.submit-btn:hover, input.up-btn:hover, input.down-btn:hover {
+  background-color: #0f436a;
+}
+
+.update-cleanliness-btn {
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+}
+
+p.item-description {
+  margin: 25px;
+  font-size: 18px;
+}
+
+p.question {
+  margin: 25px;
+  font-size: 18px;
+}
+
+.update-clean-menu {
+  margin: 20px;
+  font-size: 18px;
 }
