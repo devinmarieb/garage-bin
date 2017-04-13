@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const pg = require('pg')
 
 const environment = process.env.NODE_ENV || 'development'
 const configuration = require('./knexfile')[environment]
@@ -143,6 +144,10 @@ app.patch('/api/junk/:item', (request, response)=> {
     })
 })
 
-app.listen(app.get('port'), () => {
-  console.log(`Garage Bin is running on ${app.get('port')}.`)
-})
+if(!module.parent) {
+  app.listen(app.get('port'), () => {
+    console.log(`Garage Bin is running on ${app.get('port')}.`)
+  })
+}
+
+module.exports = app
