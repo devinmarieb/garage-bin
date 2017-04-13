@@ -33,6 +33,7 @@ app.get('/api/junk', (request, response)=> {
     })
 })
 
+//posts a new item
 app.post('/api/junk', (request, response)=> {
   const junkItem = {name: request.body.name, reason: request.body.reason, cleanliness: request.body.cleanliness, created_at: new Date}
   database('junk').insert(junkItem)
@@ -45,6 +46,14 @@ app.post('/api/junk', (request, response)=> {
       console.error(error)
     })
   })
+})
+
+//gets the count of all items
+app.get('/api/junk/count', (request, response)=> {
+  database('junk').select()
+    .then((items)=> {
+      response.status(200).json(items.length)
+    })
 })
 
 app.listen(app.get('port'), () => {

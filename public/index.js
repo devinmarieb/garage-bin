@@ -4,6 +4,7 @@ const reason = document.querySelector('.reason-input')
 const submitBtn = document.querySelector('.submit-btn')
 
 getGarageItems()
+getItemCount()
 
 function getGarageItems() {
   fetch(`/api/junk`, {
@@ -15,6 +16,18 @@ function getGarageItems() {
   })
   .then(response => response.json())
   .then(response => document.querySelector('.garage-container').innerHTML = response.reduce((acc, item) => `${acc} <p class="single-item">${item.name}</p>`,''))
+}
+
+function getItemCount() {
+  fetch(`/api/junk/count`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  })
+  .then(response => response.json())
+  .then(response => document.querySelector('.count').innerHTML = response)
 }
 
 submitBtn.addEventListener('click', ()=> {
@@ -36,6 +49,7 @@ submitBtn.addEventListener('click', ()=> {
   })
   .then(response =>  response.json())
   .then(response => getGarageItems())
+  .then(response => getItemCount())
   newJunk.value = ''
   reason.value = ''
   cleanlinessOption = cleanliness.options[cleanliness.selectedIndex = 0]
