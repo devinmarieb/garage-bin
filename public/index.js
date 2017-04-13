@@ -5,6 +5,9 @@ const submitBtn = document.querySelector('.submit-btn')
 
 getGarageItems()
 getItemCount()
+getSparklingCount()
+getDustyCount()
+getRancidCount()
 
 function getGarageItems() {
   fetch(`/api/junk`, {
@@ -28,6 +31,42 @@ function getItemCount() {
   })
   .then(response => response.json())
   .then(response => document.querySelector('.count').innerHTML = response)
+}
+
+function getSparklingCount() {
+  fetch(`/api/junk/sparkling`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  })
+  .then(response => response.json())
+  .then(response => document.querySelector('.sparkling').innerHTML = response)
+}
+
+function getDustyCount() {
+  fetch(`/api/junk/dusty`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  })
+  .then(response => response.json())
+  .then(response => document.querySelector('.dusty').innerHTML = response)
+}
+
+function getRancidCount() {
+  fetch(`/api/junk/rancid`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+  })
+  .then(response => response.json())
+  .then(response => document.querySelector('.rancid').innerHTML = response)
 }
 
 submitBtn.addEventListener('click', ()=> {

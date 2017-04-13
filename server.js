@@ -54,7 +54,44 @@ app.get('/api/junk/count', (request, response)=> {
     .then((items)=> {
       response.status(200).json(items.length)
     })
+    .catch((error)=> {
+      console.error(error)
+    })
 })
+
+//gets all sparkling items
+app.get('/api/junk/sparkling', (request, response)=> {
+  database('junk').where('cleanliness', 'sparkling').select()
+    .then((items)=> {
+      response.status(200).json(items.length)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+})
+
+//gets all dusty items
+app.get('/api/junk/dusty', (request, response)=> {
+  database('junk').where('cleanliness', 'dusty').select()
+    .then((items)=> {
+      response.status(200).json(items.length)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+})
+
+//gets all rancid items
+app.get('/api/junk/rancid', (request, response)=> {
+  database('junk').where('cleanliness', 'rancid').select()
+    .then((items)=> {
+      response.status(200).json(items.length)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+})
+
 
 app.listen(app.get('port'), () => {
   console.log(`Garage Bin is running on ${app.get('port')}.`)
