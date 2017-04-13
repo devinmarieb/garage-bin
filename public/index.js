@@ -1,9 +1,11 @@
 const garageList = document.querySelector('.garage-container')
+// const singleGarageListItem = document.querySelector('.individual-item-container')
 const newJunk = document.querySelector('.junk-input')
 const reason = document.querySelector('.reason-input')
 const submitBtn = document.querySelector('.submit-btn')
 const upBtn = document.querySelector('.up-btn')
 const downBtn = document.querySelector('.down-btn')
+const garageItemList = document.querySelector('.garage-container')
 
 getGarageItems()
 getItemCount()
@@ -21,6 +23,18 @@ function getGarageItems() {
   })
   .then(response => response.json())
   .then(response => document.querySelector('.garage-container').innerHTML = response.reduce((acc, item) => `${acc} <p class="single-item">${item.name}</p>`,''))
+}
+
+function getSingleItems(selectedItem) {
+  fetch(`/api/junk/${selectedItem}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Application': 'application/json'
+    },
+  })
+  .then(response => response.json())
+  .then(response => document.querySelector('.individual-item-container').innerHTML = response.reduce((acc, item) => `${acc} <div><p>${item.name}</p><p>${item.reason}</p><p>${item.cleanliness}</p></div>`,''))
 }
 
 function getItemCount() {
@@ -121,4 +135,9 @@ downBtn.addEventListener('click', ()=> {
   })
   .then(response => response.json())
   .then(response => document.querySelector('.garage-container').innerHTML = response.reduce((acc, item) => `${acc} <p class="single-item">${item.name}</p>`,''))
+})
+
+garageItemList.addEventListener('click', (e)=> {
+  let selectedItem = e.target.innerHTML
+  getSingleItems(selectedItem)
 })

@@ -114,6 +114,17 @@ app.get('/api/junk/down', (request, response)=> {
     })
 })
 
+//get info for specific item
+app.get('/api/junk/:item', (request, response)=> {
+  database('junk').where('name', request.params.item).select()
+    .then((item)=> {
+      response.status(200).json(item)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+})
+
 app.listen(app.get('port'), () => {
   console.log(`Garage Bin is running on ${app.get('port')}.`)
 })
