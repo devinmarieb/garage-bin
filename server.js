@@ -33,21 +33,6 @@ app.get('/api/junk', (request, response)=> {
     })
 })
 
-//posts a new item
-app.post('/api/junk', (request, response)=> {
-  const junkItem = {name: request.body.name, reason: request.body.reason, cleanliness: request.body.cleanliness, created_at: new Date}
-  database('junk').insert(junkItem)
-  .then(()=> {
-    database('junk').select()
-      .then((junk)=> {
-        response.status(200).json(junk);
-      })
-    .catch((error)=> {
-      console.error(error)
-    })
-  })
-})
-
 //gets the count of all items
 app.get('/api/junk/count', (request, response)=> {
   database('junk').select()
@@ -119,6 +104,39 @@ app.get('/api/junk/:item', (request, response)=> {
   database('junk').where('name', request.params.item).select()
     .then((item)=> {
       response.status(200).json(item)
+    })
+    .catch((error)=> {
+      console.error(error)
+    })
+})
+
+//posts a new item
+app.post('/api/junk', (request, response)=> {
+  const junkItem = {name: request.body.name, reason: request.body.reason, cleanliness: request.body.cleanliness, created_at: new Date}
+  database('junk').insert(junkItem)
+  .then(()=> {
+    database('junk').select()
+      .then((junk)=> {
+        response.status(200).json(junk);
+      })
+    .catch((error)=> {
+      console.error(error)
+    })
+  })
+})
+
+//patches cleanliness
+app.patch('/api/junk/:item', (request, response)=> {
+  database('junk').where('name', request.params.item).select()
+    .then((item)=> {
+      let newCleanliness = request.body.cleanliness
+      database('junk').where('name', request.params.item).select().update({ cleanliness: newCleanliness})
+        .then(()=> {
+          database('junk').where('name', request.params.item).select()
+          .then((item)=> {
+            response.status(200).json(item)
+          })
+        })
     })
     .catch((error)=> {
       console.error(error)

@@ -12,3 +12,7 @@ input {
   display: inline-block;
   margin: 20px;
 }
+
+input.update-cleanliness-btn {
+  display: inline-block;
+}

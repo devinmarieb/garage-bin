@@ -1,17 +1,18 @@
 const garageList = document.querySelector('.garage-container')
-// const singleGarageListItem = document.querySelector('.individual-item-container')
+const garageItemList = document.querySelector('.garage-container')
 const newJunk = document.querySelector('.junk-input')
 const reason = document.querySelector('.reason-input')
 const submitBtn = document.querySelector('.submit-btn')
 const upBtn = document.querySelector('.up-btn')
 const downBtn = document.querySelector('.down-btn')
-const garageItemList = document.querySelector('.garage-container')
+let selectedItem
 
 getGarageItems()
 getItemCount()
 getSparklingCount()
 getDustyCount()
 getRancidCount()
+checkForButton()
 
 function getGarageItems() {
   fetch(`/api/junk`, {
@@ -22,7 +23,8 @@ function getGarageItems() {
     },
   })
   .then(response => response.json())
-  .then(response => document.querySelector('.garage-container').innerHTML = response.reduce((acc, item) => `${acc} <p class="single-item">${item.name}</p>`,''))
+  .then(response => document.querySelector('.garage-container').innerHTML = response.reduce((acc, item) =>
+  `${acc} <p class="single-item">${item.name}</p>`,''))
 }
 
 function getSingleItems(selectedItem) {
@@ -34,7 +36,20 @@ function getSingleItems(selectedItem) {
     },
   })
   .then(response => response.json())
-  .then(response => document.querySelector('.individual-item-container').innerHTML = response.reduce((acc, item) => `${acc} <div><p>${item.name}</p><p>${item.reason}</p><p>${item.cleanliness}</p></div>`,''))
+  .then(response => document.querySelector('.individual-item-container').innerHTML = response.reduce((acc, item) =>
+  `${acc} <div>
+            <p>${item.name}</p>
+            <p>${item.reason}</p>
+            <p>${item.cleanliness}</p>
+            <p>Did you clean it or make it worse?</p>
+            <select class='update-clean-menu'>
+              <option value='sparkling'>sparkling</option>
+              <option value='dusty'>dusty</option>
+              <option value='rancid'>rancid</option>
+            </select>
+            <input class="update-cleanliness-btn" type="submit" value="update cleanliness" />
+          </div>`,''))
+  .then(response => checkForButton())
 }
 
 function getItemCount() {
@@ -84,6 +99,37 @@ function getRancidCount() {
   .then(response => response.json())
   .then(response => document.querySelector('.rancid').innerHTML = response)
 }
+
+function updateExistingCleanliness() {
+  const updateCleanMenu = document.querySelector('.update-clean-menu')
+  let newCleanlinessOption = updateCleanMenu.options[updateCleanMenu.selectedIndex].text
+  fetch(`http://localhost:3000/api/junk/${selectedItem}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({
+      cleanliness: newCleanlinessOption
+    })
+  })
+  .then(response => response.json())
+  .then(response => getSparklingCount())
+  .then(response => getDustyCount())
+  .then(response => getRancidCount())
+}
+
+function checkForButton() {
+  if(document.querySelector('.update-cleanliness-btn')) {
+    const updateCleanlinessBtn = document.querySelector('.update-cleanliness-btn')
+    updateCleanlinessBtn.addEventListener('click', ()=> {
+      updateExistingCleanliness()
+    })
+  } else {
+    console.log('no')
+  }
+}
+
 
 submitBtn.addEventListener('click', ()=> {
   const newJunk = document.querySelector('.junk-input')
@@ -138,6 +184,6 @@ downBtn.addEventListener('click', ()=> {
 })
 
 garageItemList.addEventListener('click', (e)=> {
-  let selectedItem = e.target.innerHTML
+  selectedItem = e.target.innerHTML
   getSingleItems(selectedItem)
 })
