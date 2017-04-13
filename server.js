@@ -2,6 +2,7 @@ const http = require('http')
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
+const fs = require('fs')
 const app = express()
 
 const environment = process.env.NODE_ENV || 'development'
@@ -19,10 +20,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 app.set('port', process.env.PORT || 3000)
-
-app.get('/', (request, response) => {
-  response.send('Garage Bin')
-})
 
 //gets all junk in garage
 app.get('/api/junk', (request, response)=> {
