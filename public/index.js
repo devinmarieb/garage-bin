@@ -104,7 +104,7 @@ function getRancidCount() {
 function updateExistingCleanliness() {
   const updateCleanMenu = document.querySelector('.update-clean-menu')
   let newCleanlinessOption = updateCleanMenu.options[updateCleanMenu.selectedIndex].text
-  fetch(`http://localhost:3000/api/junk/${selectedItem}`, {
+  fetch(`/api/junk/${selectedItem}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ submitBtn.addEventListener('click', ()=> {
   const reason = document.querySelector('.reason-input')
   const cleanliness = document.querySelector('.cleanliness-dropdown')
   let cleanlinessOption = cleanliness.options[cleanliness.selectedIndex].text
-  fetch(`http://localhost:3000/api/junk`, {
+  fetch(`/api/junk`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
