@@ -7,10 +7,22 @@
     <title>Garage Bin</title>
   </head>
   <body>
-    <h1 class="jet-fuel">Garage Bin</h1>
-    <div class='garage-container'></div>
+    <h1 class="tite">Garage Bin</h1>
+    <div class="garage-container"></div>
+    <div class="input-container">
 
+      <input class="junk-input" placeholder="what junk did you find?" />
+      <input class="reason-input" placeholder="why are you keeping it?" />
 
+      <p class="condition">What condition is it in?</p>
+      <select class="cleanliness-dropdown">
+        <option value="Sparkling">Sparkling</option>
+        <option value="Dusty">Dusty</option>
+        <option value="Rancid">Rancid</option>
+      </select>
+
+      <input class="submit-btn" type="submit" value="add to garage" />
+    </div>
     <script src="/index.js"></script>
   </body>
 </html>
