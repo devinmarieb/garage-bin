@@ -91,6 +91,9 @@ submitBtn.addEventListener('click', ()=> {
   .then(response =>  response.json())
   .then(response => getGarageItems())
   .then(response => getItemCount())
+  .then(response => getSparklingCount())
+  .then(response => getDustyCount())
+  .then(response => getRancidCount())
   newJunk.value = ''
   reason.value = ''
   cleanlinessOption = cleanliness.options[cleanliness.selectedIndex = 0]
