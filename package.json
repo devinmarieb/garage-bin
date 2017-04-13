@@ -4,6 +4,7 @@
   "description": "mod4 final assessment",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "node_modules/.bin/mocha ./tests/**.js || true"
   },
   "author": "Devin Beliveau",
