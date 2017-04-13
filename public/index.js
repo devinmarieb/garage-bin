@@ -1,4 +1,6 @@
 const garageList = document.querySelector('.garage-container')
+const newJunk = document.querySelector('.junk-input')
+const reason = document.querySelector('.reason-input')
 const submitBtn = document.querySelector('.submit-btn')
 
 getGarageItems()
@@ -34,4 +36,7 @@ submitBtn.addEventListener('click', ()=> {
   })
   .then(response =>  response.json())
   .then(response => getGarageItems())
+  newJunk.value = ''
+  reason.value = ''
+  cleanlinessOption = cleanliness.options[cleanliness.selectedIndex = 0]
 })
