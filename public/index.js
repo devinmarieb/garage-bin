@@ -8,6 +8,7 @@ const downBtn = document.querySelector('.down-btn')
 const garageDoor = document.querySelector('.garage-door')
 let selectedItem
 
+export default
 getGarageItems()
 getItemCount()
 getSparklingCount()
@@ -195,3 +196,6 @@ garageItemList.addEventListener('click', (e)=> {
   selectedItem = e.target.innerHTML
   getSingleItems(selectedItem)
 })
+
+
+module.exports = { checkForButton, garageItemList }
